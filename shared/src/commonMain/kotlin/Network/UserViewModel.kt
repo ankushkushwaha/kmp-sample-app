@@ -32,7 +32,7 @@ class UserViewModel(private val userRepository: UserRepository = UserRepository(
     }
 
     data class ViewState(
-        var isLoading: Boolean? = false,
+        var isLoading: Boolean = false,
         var errorMessage: String? = null,
         var users: List<User> = emptyList()
     )
