@@ -4,13 +4,24 @@ import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
+
+import io.ktor.client.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.logging.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
-fun HttpClient(): HttpClient {
-    val httpClient = HttpClient {
+fun createHttpClient(): HttpClient {
+    return HttpClient {
         expectSuccess = true
 
-        //setup JSON serialization, and content negotiation
+        // ✅ Logging setup
+        install(Logging) {
+            logger = Logger.DEFAULT
+            level = LogLevel.ALL // Use BODY for detailed logs
+        }
+
+        // ✅ Content negotiation for JSON
         install(ContentNegotiation) {
             json(Json {
                 prettyPrint = true
@@ -19,7 +30,7 @@ fun HttpClient(): HttpClient {
             })
         }
     }
-    return httpClient
 }
+
 
 

@@ -19,7 +19,7 @@ class UserViewModel(private val userRepository: UserRepository = UserRepository(
         viewModelScope.launch {
 
             _viewState.value = _viewState.value.copy(isLoading = true)
-            println("State" + _viewState.value)
+//            println("State" + _viewState.value)
 
             val users = userRepository.fetchUsers()
 
@@ -27,7 +27,7 @@ class UserViewModel(private val userRepository: UserRepository = UserRepository(
                 isLoading = false,
                 users = users
             )
-            println("State" + _viewState.value)
+//            println("State" + _viewState.value)
         }
     }
 

@@ -1,21 +1,39 @@
 import SwiftUI
 import shared
+import KMPObservableViewModelSwiftUI
+import KMPObservableViewModelCore
 
 struct ContentView: View {
-	let greet = Greeting().greet()
     
-    let vm = CommonKoinHelper().userViewModel
-
-	var body: some View {
-		Text(greet)
-            .onAppear {
-                vm.fetchUsers()
+    @StateViewModel var viewModel = CommonKoinHelper().userViewModel
+    
+    var body: some View {
+        VStack {
+            if state.isLoading?.boolValue ?? false {
+                ProgressView("Loading...")
+            } else if let error = state.errorMessage {
+                Text("Error: \(error)")
+            } else {
+                List(state.users, id: \.id) { user in
+                    VStack(alignment: .leading) {
+                        Text(user.name).font(.headline)
+                        Text(user.email).font(.subheadline).foregroundColor(.gray)
+                    }
+                }
             }
-	}
+        }
+        .onAppear {
+            viewModel.fetchUsers()
+        }
+    }
+    
+    var state: UserViewModel.ViewState {
+        viewModel.viewStateValue
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+    static var previews: some View {
+        ContentView()
+    }
 }

@@ -11,7 +11,7 @@ import io.ktor.client.call.body
 import io.ktor.client.request.*
 import kotlinx.serialization.json.Json
 
-class UserRepository(private val client: HttpClient = HttpClient()) {
+class UserRepository(private val client: HttpClient = createHttpClient()) {
 
     suspend fun fetchUsers(): List<User> {
         // Perform the network request and parse the JSON response

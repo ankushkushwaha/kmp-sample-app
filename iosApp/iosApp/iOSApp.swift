@@ -1,5 +1,6 @@
 import SwiftUI
 import shared
+import KMPObservableViewModelCore
 
 @main
 struct iOSApp: App {
@@ -12,3 +13,5 @@ struct iOSApp: App {
 		}
 	}
 }
+
+extension Kmp_observableviewmodel_coreViewModel: ViewModel { }

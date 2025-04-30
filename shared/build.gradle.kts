@@ -28,6 +28,7 @@ kotlin {
             isStatic = true
         }
     }
+    val ktorVersion = "2.3.9" // or the version you're using
 
     sourceSets {
 
@@ -35,15 +36,15 @@ kotlin {
             languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
         }
         commonMain.dependencies {
+            implementation(libs.koin.core)
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.koin.client.logging )
 
             implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.koin.core)
 
-            api("com.rickclephas.kmp:kmp-observableviewmodel-core:1.0.0-BETA-10")
-
+            api(libs.kmp.observableviewmodel.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
