@@ -12,12 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.kmp_sample_app.Greeting
+import org.koin.compose.getKoin
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val userViewModel = UserViewModel()
+            val userViewModel: UserViewModel = getKoin().get()
 
             MyApplicationTheme {
                 Surface(

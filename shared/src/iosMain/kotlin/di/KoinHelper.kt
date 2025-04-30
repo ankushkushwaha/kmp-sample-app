@@ -1,10 +1,6 @@
-package DI
-
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
+package di
 
 import org.koin.core.context.startKoin
-import org.koin.core.qualifier.named
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
@@ -13,7 +9,7 @@ fun initWithSharedModules(iOSModule: String) {
 
     //init koin DI
     startKoin {
-        modules(getSharedModules(
+        modules(appendWithSharedModule(
             module {
                 // Add iOS specific DI objects here
                 factory { iOSModule } bind String::class

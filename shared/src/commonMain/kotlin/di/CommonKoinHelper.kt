@@ -1,4 +1,4 @@
-package DI
+package di
 
 import UserViewModel
 import org.koin.core.component.KoinComponent

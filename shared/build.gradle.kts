@@ -28,7 +28,6 @@ kotlin {
             isStatic = true
         }
     }
-    val ktorVersion = "2.3.9" // or the version you're using
 
     sourceSets {
 
@@ -36,15 +35,15 @@ kotlin {
             languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
         }
         commonMain.dependencies {
+            api(libs.kmp.observableviewmodel.core)
+
             implementation(libs.koin.core)
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.koin.client.logging )
-
             implementation(libs.kotlinx.coroutines.core)
 
-            api(libs.kmp.observableviewmodel.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -52,6 +51,7 @@ kotlin {
 
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
+            implementation(libs.koin.android)
         }
 
         iosMain.dependencies {

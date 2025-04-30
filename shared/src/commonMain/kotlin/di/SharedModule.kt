@@ -1,6 +1,5 @@
-package DI
+package di
 
-import Network.UserRepository
 import UserViewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -23,7 +22,9 @@ private val sharedModules = arrayListOf(
 * This function combines the appModule dependencies to the sharedModules list and returns the list
 * @param appModule - the module that contains all the dependencies of shared module.
  */
-fun getSharedModules(platformSpecificModules: Module = module {}): List<Module> {
+fun appendWithSharedModule(platformSpecificModules: Module = module {}): List<Module> {
     sharedModules.add(index = 0, element = platformSpecificModules)
     return sharedModules
 }
+
+

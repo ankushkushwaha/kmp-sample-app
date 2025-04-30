@@ -2,6 +2,7 @@ import Model.User
 import Network.UserRepository
 import com.rickclephas.kmp.observableviewmodel.ViewModel
 import com.rickclephas.kmp.observableviewmodel.launch
+import com.rickclephas.kmp.observableviewmodel.stateIn
 import kotlinx.coroutines.flow.asStateFlow
 
 class UserViewModel(private val userRepository: UserRepository = UserRepository()): ViewModel() {
@@ -27,7 +28,7 @@ class UserViewModel(private val userRepository: UserRepository = UserRepository(
                 isLoading = false,
                 users = users
             )
-//            println("State" + _viewState.value)
+            println("State" + _viewState.value)
         }
     }
 
