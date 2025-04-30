@@ -9,7 +9,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            if state.isLoading?.boolValue ?? false {
+            if state.isLoading {
                 ProgressView("Loading...")
             } else if let error = state.errorMessage {
                 Text("Error: \(error)")
