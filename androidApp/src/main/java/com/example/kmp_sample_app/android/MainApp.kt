@@ -2,7 +2,6 @@ package com.example.kmp_sample_app.android
 
 import android.app.Application
 import di.appendWithSharedModule
-import di.initKoinFromShared
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin

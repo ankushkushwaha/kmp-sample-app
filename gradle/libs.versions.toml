@@ -2,7 +2,7 @@
 agp = "8.7.3"
 kmpObservableviewmodelCore = "1.0.0-BETA-10"
 kotlin = "2.1.20"
-compose = "1.5.4"
+compose = "1.6.5"
 compose-material3 = "1.1.2"
 androidx-activityCompose = "1.8.0"
 kotlinxCoroutinesCore = "1.10.1"
