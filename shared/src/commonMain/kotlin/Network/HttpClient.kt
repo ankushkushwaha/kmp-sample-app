@@ -6,6 +6,7 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 
 import io.ktor.client.*
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.serialization.kotlinx.json.*
@@ -28,6 +29,11 @@ fun createHttpClient(): HttpClient {
                 isLenient = true
                 ignoreUnknownKeys = true
             })
+        }
+
+        install(HttpTimeout) {
+            requestTimeoutMillis = 10_000 // Timeout for the entire request
+            connectTimeoutMillis = 5_000 // Timeout for connecting to the server
         }
     }
 }
