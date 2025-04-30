@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.collectLatest
@@ -15,7 +16,6 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UserListScreen(viewModel: UserViewModel) {
-    val scope = rememberCoroutineScope()
     val state by viewModel.viewState.collectAsState()
 
     LaunchedEffect(Unit) {
@@ -27,13 +27,32 @@ fun UserListScreen(viewModel: UserViewModel) {
             TopAppBar(title = { Text("User List") })
         }
     ) { padding ->
-        LazyColumn(
-            modifier = Modifier
-                .padding(padding)
-                .fillMaxSize()
+        Box(modifier = Modifier
+            .padding(padding)
+            .fillMaxSize()
         ) {
-            items(state.users) { user ->
-                UserItem(user)
+            when {
+                state.isLoading -> {
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                }
+
+                state.errorMessage != null -> {
+                    Text(
+                        text = state.errorMessage ?: "Error occurred",
+                        color = MaterialTheme.colorScheme.error,
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .padding(16.dp)
+                    )
+                }
+
+                else -> {
+                    LazyColumn {
+                        items(state.users) { user ->
+                            UserItem(user)
+                        }
+                    }
+                }
             }
         }
     }
