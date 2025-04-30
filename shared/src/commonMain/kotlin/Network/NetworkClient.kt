@@ -15,7 +15,11 @@ class UserRepository(private val client: HttpClient = createHttpClient()) {
 
     suspend fun fetchUsers(): List<User> {
         // Perform the network request and parse the JSON response
-        return client.get("https://jsonplaceholder.typicode.com/users").body()
+        return try {
+            client.get("https://jsonplaceholder.typicode.com/users").body()
+        } catch (e: Exception) {
+            emptyList() // or handle error accordingly
+        }
     }
 }
 
