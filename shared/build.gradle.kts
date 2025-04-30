@@ -29,10 +29,25 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
+            implementation("org.koin:koin-core:3.2.0")
+
+            implementation("io.ktor:ktor-client-core:2.3.1")
+            implementation("io.ktor:ktor-client-json:2.3.1")
+            implementation("io.ktor:ktor-client-serialization:2.3.1")
+            implementation("org.koin:koin-core:3.2.0")
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+
+        androidMain.dependencies {
+            implementation("io.ktor:ktor-client-android:2.3.1")
+            implementation("org.koin:koin-android:3.2.0")
+        }
+
+        iosMain.dependencies {
+            implementation("io.ktor:ktor-client-ios:2.3.1")
         }
     }
 }
