@@ -3,6 +3,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinSerialization)
+
 }
 
 kotlin {
@@ -28,26 +30,31 @@ kotlin {
     }
 
     sourceSets {
-        commonMain.dependencies {
-            implementation("org.koin:koin-core:3.2.0")
 
-            implementation("io.ktor:ktor-client-core:2.3.1")
-            implementation("io.ktor:ktor-client-json:2.3.1")
-            implementation("io.ktor:ktor-client-serialization:2.3.1")
-            implementation("org.koin:koin-core:3.2.0")
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+        all {
+            languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
+        }
+        commonMain.dependencies {
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.koin.core)
+
+            api("com.rickclephas.kmp:kmp-observableviewmodel-core:1.0.0-BETA-10")
+
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
 
         androidMain.dependencies {
-            implementation("io.ktor:ktor-client-android:2.3.1")
-            implementation("org.koin:koin-android:3.2.0")
+            implementation(libs.ktor.client.android)
         }
 
         iosMain.dependencies {
-            implementation("io.ktor:ktor-client-ios:2.3.1")
+            implementation(libs.ktor.client.darwin)
         }
     }
 }
@@ -62,4 +69,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+}
+dependencies {
+    implementation(libs.androidx.lifecycle.viewmodel.android)
 }
