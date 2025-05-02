@@ -25,6 +25,6 @@ class SearchViewModel: ObservableObject {
     }
     
     private func performSearch(for query: String) {
-        
+        // Fetch search results
     }
 }

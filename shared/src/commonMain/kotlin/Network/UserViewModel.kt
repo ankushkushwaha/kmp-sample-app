@@ -5,7 +5,10 @@ import com.rickclephas.kmp.observableviewmodel.launch
 import com.rickclephas.kmp.observableviewmodel.stateIn
 import kotlinx.coroutines.flow.asStateFlow
 
-class UserViewModel(private val userRepository: UserRepository = UserRepository()): ViewModel() {
+class UserViewModel(
+    private val userRepository: UserRepository = UserRepository(),
+    private val manager: UserSettingsManager = UserSettingsManager()
+) : ViewModel() {
 
     private val _viewState = com.rickclephas.kmp.observableviewmodel.MutableStateFlow(
         viewModelScope,
@@ -28,7 +31,12 @@ class UserViewModel(private val userRepository: UserRepository = UserRepository(
                 isLoading = false,
                 users = users
             )
+
             println("State" + _viewState.value)
+
+            val count = manager.getCount()
+            manager.saveCount(count+1)
+            println("App launched: -- ${manager.getCount()} -- times")
         }
     }
 

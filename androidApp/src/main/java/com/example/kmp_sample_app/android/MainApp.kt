@@ -2,6 +2,7 @@ package com.example.kmp_sample_app.android
 
 import android.app.Application
 import di.appendWithSharedModule
+import initKmpStorage
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
@@ -13,13 +14,14 @@ class MainApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        initKmpStorage(this)
+
         initKoin()
-//        initKoinFromShared()
     }
 
     fun initKoin() {
         koinApplication = startKoin {
-            androidContext(this@MainApp)
+            /// androidContext(this@MainApp)
 
             modules(appendWithSharedModule(module {
                 // Add Android specific modules here
