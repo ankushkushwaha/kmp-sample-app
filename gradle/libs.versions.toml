@@ -9,8 +9,12 @@ kotlinxCoroutinesCore = "1.10.1"
 ktor = "2.3.7"
 koin = "3.5.3"
 lifecycleViewmodelAndroid = "2.8.7"
+multiplatformSettings = "1.3.0"
+securityCrypto = "1.1.0-alpha07"
+securityCryptoKtx = "1.0.0"
 
 [libraries]
+androidx-security-crypto = { module = "androidx.security:security-crypto", version.ref = "securityCrypto" }
 kmp-observableviewmodel-core = { module = "com.rickclephas.kmp:kmp-observableviewmodel-core", version.ref = "kmpObservableviewmodelCore" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -33,6 +37,8 @@ koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", versi
 
 
 androidx-lifecycle-viewmodel-android = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-android", version.ref = "lifecycleViewmodelAndroid" }
+multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettings" }
+androidx-security-crypto-ktx = { group = "androidx.security", name = "security-crypto-ktx", version.ref = "securityCryptoKtx" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

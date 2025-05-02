@@ -43,6 +43,8 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.koin.client.logging )
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.multiplatform.settings)
+            implementation("com.russhwolf:multiplatform-settings-no-arg:1.3.0")
 
         }
         commonTest.dependencies {
@@ -52,6 +54,8 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
             implementation(libs.koin.android)
+            implementation(libs.androidx.security.crypto)
+            implementation("androidx.datastore:datastore-preferences:1.1.5")
         }
 
         iosMain.dependencies {
@@ -73,5 +77,6 @@ android {
 }
 dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.android)
+//    implementation(libs.androidx.security.crypto.ktx)
 }
 
