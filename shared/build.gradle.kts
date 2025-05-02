@@ -54,8 +54,6 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
             implementation(libs.koin.android)
-            implementation(libs.androidx.security.crypto)
-            implementation("androidx.datastore:datastore-preferences:1.1.5")
         }
 
         iosMain.dependencies {
@@ -77,6 +75,5 @@ android {
 }
 dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.android)
-//    implementation(libs.androidx.security.crypto.ktx)
 }
 
