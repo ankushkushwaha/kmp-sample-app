@@ -18,6 +18,8 @@ struct ContentView: View {
                 .cornerRadius(10)
                 .padding(.horizontal)
             
+            Spacer()
+            
             if state.isLoading {
                 ProgressView("Loading...")
             } else if let error = state.errorMessage {
