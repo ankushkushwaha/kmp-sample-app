@@ -11,7 +11,6 @@ actual fun getPlatformSystemPreferences(): Storage {
     return SimpleDataStorageImpl(appContext)
 }
 
-
 class SimpleDataStorageImpl(context: Context) : Storage {
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("simple_data_storage", Context.MODE_PRIVATE)

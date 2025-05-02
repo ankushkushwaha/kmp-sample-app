@@ -1,11 +1,13 @@
 package com.example.kmp_sample_app.android
 
+import UserSettingsManager
 import android.app.Application
 import di.appendWithSharedModule
 import initKmpStorage
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 class MainApp : Application() {
@@ -15,16 +17,15 @@ class MainApp : Application() {
         super.onCreate()
 
         initKmpStorage(this)
-
         initKoin()
     }
 
     fun initKoin() {
         koinApplication = startKoin {
-            /// androidContext(this@MainApp)
+            /// androidContext(this@MainApp) // to pass context
 
             modules(appendWithSharedModule(module {
-                // Add Android specific modules here
+//                factory { AndroidSpecificClass(context: this@KMPApplication) } bind AndroidSpecificClassType::class
             }))
         }
     }
