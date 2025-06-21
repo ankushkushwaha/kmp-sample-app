@@ -17,19 +17,19 @@ struct ContentView: View {
     @State private var pushToScreen = false
 
     var body: some View {
-        NavigationStack {
-            List(state.options, id: \.self) { option in
-                Button(action: {
-                    selectedOption = option
-                    pushToScreen = true
-                }) {
-                    Text(option.name)
-                        .foregroundColor(.primary)
-                }
+        List(state.options, id: \.self) { option in
+            Button(action: {
+                viewModel.selectOption(option: option)
+            }) {
+                Text(option.name)
+                    .foregroundColor(.primary)
             }
-            .listStyle(.plain)
-            .pushView(destination: destinationView(), isPresented: $pushToScreen)
-            .navigationTitle("Main Screen")
+        }
+        .listStyle(.plain)
+        .pushView(destination: destinationView(), isPresented: $pushToScreen)
+        .navigationTitle("Main Screen")
+        .onChange(of: state.selectedOption) { option in
+            pushToScreen = true
         }
     }
 
@@ -39,7 +39,7 @@ struct ContentView: View {
 
     @ViewBuilder
     private func destinationView() -> some View {
-        switch selectedOption {
+        switch state.selectedOption {
         case .userList:
             UserListView()
         case .todos:

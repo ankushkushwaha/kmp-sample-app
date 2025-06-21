@@ -18,11 +18,12 @@ class ContentViewModel : ViewModel() {
 
     data class ViewState(
         val options: List<ContentOptions> = ContentOptions.entries,
-        val selectedOption: ContentOptions = ContentOptions.USER_LIST
+        val selectedOption: ContentOptions = ContentOptions.NONE
     )
 
     enum class ContentOptions {
         USER_LIST,
-        TODOS
+        TODOS,
+        NONE
     }
 }
