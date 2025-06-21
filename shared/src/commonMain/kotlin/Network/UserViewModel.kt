@@ -1,8 +1,8 @@
 import Model.User
 import Network.UserRepository
+import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
 import com.rickclephas.kmp.observableviewmodel.ViewModel
 import com.rickclephas.kmp.observableviewmodel.launch
-import com.rickclephas.kmp.observableviewmodel.stateIn
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -11,7 +11,7 @@ class UserViewModel(
     private val manager: UserSettingsManager = UserSettingsManager()
 ) : ViewModel() {
 
-    private val _viewState = com.rickclephas.kmp.observableviewmodel.MutableStateFlow(
+    private val _viewState = MutableStateFlow(
         viewModelScope,
         ViewState()
     )
