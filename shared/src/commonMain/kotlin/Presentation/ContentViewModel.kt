@@ -28,7 +28,7 @@ class ContentViewModel : ViewModel() {
 
         val displayName: String
             get() = when (this) {
-                USER_LIST -> "User List - API call"
+                USER_LIST -> "User List - API call - SystemPreferences (Userdefaults)"
                 TODOS -> "Todos - SQLDeLight Database"
                 NONE -> "None"
             }
