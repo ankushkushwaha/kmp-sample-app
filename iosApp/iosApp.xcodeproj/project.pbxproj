@@ -12,6 +12,7 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		543879D22E06C5D2001E2EE9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543879D12E06C5D2001E2EE9 /* ContentView.swift */; };
 		54387A012E06D1CA001E2EE9 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54387A002E06D1CA001E2EE9 /* View+Extension.swift */; };
+		545009532E07154D009F11AB /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545009522E07154D009F11AB /* TodoListView.swift */; };
 		5492127C2DC2799E00408CB4 /* KMPObservableViewModelCore in Frameworks */ = {isa = PBXBuildFile; productRef = 5492127B2DC2799E00408CB4 /* KMPObservableViewModelCore */; };
 		5492127E2DC2799E00408CB4 /* KMPObservableViewModelSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5492127D2DC2799E00408CB4 /* KMPObservableViewModelSwiftUI */; };
 		54DE5D4B2DC500D1003FEDF9 /* KMPObservableViewModelCore in Frameworks */ = {isa = PBXBuildFile; productRef = 54DE5D4A2DC500D1003FEDF9 /* KMPObservableViewModelCore */; };
@@ -38,6 +39,7 @@
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		543879D12E06C5D2001E2EE9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		54387A002E06D1CA001E2EE9 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		545009522E07154D009F11AB /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* UserListView.swift */,
 				543879D12E06C5D2001E2EE9 /* ContentView.swift */,
+				545009522E07154D009F11AB /* TodoListView.swift */,
 				54387A002E06D1CA001E2EE9 /* View+Extension.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
@@ -201,6 +204,7 @@
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				7555FF83242A565900829871 /* UserListView.swift in Sources */,
+				545009532E07154D009F11AB /* TodoListView.swift in Sources */,
 				54387A012E06D1CA001E2EE9 /* View+Extension.swift in Sources */,
 				543879D22E06C5D2001E2EE9 /* ContentView.swift in Sources */,
 			);
