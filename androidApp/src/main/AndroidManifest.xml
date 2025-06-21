@@ -9,6 +9,8 @@
         android:allowBackup="false"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- Launcher Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -17,5 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Other Activities (must be outside MainActivity block) -->
+        <activity android:name=".UserListActivity" />
+        <activity android:name=".TodosActivity" />
+
     </application>
-</manifest> 
+</manifest>

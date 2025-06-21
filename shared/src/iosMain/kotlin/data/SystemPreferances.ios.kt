@@ -1,3 +1,5 @@
+package data
+
 import platform.Foundation.NSUserDefaults
 
 actual fun getPlatformSystemPreferences(): Storage {

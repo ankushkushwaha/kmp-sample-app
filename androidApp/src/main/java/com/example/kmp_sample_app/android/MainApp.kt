@@ -1,13 +1,10 @@
 package com.example.kmp_sample_app.android
 
-import UserSettingsManager
 import android.app.Application
 import di.appendWithSharedModule
-import initKmpStorage
-import org.koin.android.ext.koin.androidContext
+import data.initKmpStorage
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
-import org.koin.dsl.bind
 import org.koin.dsl.module
 
 class MainApp : Application() {

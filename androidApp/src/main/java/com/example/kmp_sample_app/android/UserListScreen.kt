@@ -1,7 +1,7 @@
 package com.example.kmp_sample_app.android
 
-import Model.User
-import UserViewModel
+import data.Model.User
+import Presentation.UserViewModel
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -10,6 +10,22 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import org.koin.androidx.compose.koinViewModel
+
+class UserListActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApplicationTheme {
+                val viewModel = koinViewModel<UserViewModel>() // or remember { UserViewModel() } if not using Koin
+                UserListScreen(viewModel = viewModel)
+            }
+        }
+    }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

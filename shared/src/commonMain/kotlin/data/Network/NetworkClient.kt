@@ -1,15 +1,10 @@
-package Network
+package data.Network
 
-import Model.User
+import data.Model.User
 import io.ktor.client.*
 import io.ktor.client.request.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
-import io.ktor.client.*
 import io.ktor.client.call.body
-import io.ktor.client.request.*
-import kotlinx.serialization.json.Json
 
 class UserRepository(private val client: HttpClient = createHttpClient()) {
 
