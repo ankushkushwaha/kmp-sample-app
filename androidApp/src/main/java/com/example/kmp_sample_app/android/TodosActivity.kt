@@ -49,7 +49,7 @@ class TodosActivity : ComponentActivity() {
 fun TodoScreen() {
     var newTodo by remember { mutableStateOf("") }
     val viewModel: TodoViewModel = getKoin().get() // using koin injection
-    val todos by viewModel.todos.collectAsState()
+    val state by viewModel.viewState.collectAsState()
 
     Scaffold(
         topBar = {
@@ -84,7 +84,7 @@ fun TodoScreen() {
             Spacer(modifier = Modifier.height(16.dp))
 
             LazyColumn {
-                items(todos) { todo ->
+                items(state.todos) { todo ->
                     TodoItem(todo = todo, onToggle = { viewModel.toggleTodo(todo) })
                 }
             }
