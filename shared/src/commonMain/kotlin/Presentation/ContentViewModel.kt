@@ -24,6 +24,13 @@ class ContentViewModel : ViewModel() {
     enum class ContentOptions {
         USER_LIST,
         TODOS,
-        NONE
+        NONE;
+
+        val displayName: String
+            get() = when (this) {
+                USER_LIST -> "User List - API call"
+                TODOS -> "Todos - SQLDeLight Database"
+                NONE -> "None"
+            }
     }
 }

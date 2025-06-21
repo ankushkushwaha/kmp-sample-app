@@ -78,7 +78,7 @@ fun ContentOptionListScreen(
                     .padding(12.dp)
             ) {
                 Text(
-                    text = option.name.replace("_", " "),
+                    text = option.displayName.replace("_", " "),
                     style = if (isSelected)
                         MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.primary)
                     else
