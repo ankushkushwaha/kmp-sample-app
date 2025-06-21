@@ -66,6 +66,13 @@ kotlin {
     }
 }
 
+sqldelight {
+    databases {
+        create("AppDatabase") {
+            packageName = "com.example.kmp_sample_app.database"
+        }
+    }
+}
 android {
     namespace = "com.example.kmp_sample_app"
     compileSdk = 34
