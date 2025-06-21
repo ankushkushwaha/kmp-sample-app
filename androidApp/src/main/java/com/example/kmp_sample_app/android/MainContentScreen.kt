@@ -38,8 +38,6 @@ fun MainContentScreen(
                             Intent(context, TodosActivity::class.java)
                         )
                     }
-
-                    ContentViewModel.ContentOptions.NONE -> TODO()
                 }
             }
         )
