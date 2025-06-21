@@ -1,6 +1,8 @@
 package com.example.kmp_sample_app.android
 
 import android.app.Application
+import com.example.kmp_sample_app.database.AppDatabase
+import data.Database.CommonKmpHelper
 import di.appendWithSharedModule
 import data.initKmpStorage
 import org.koin.core.KoinApplication
@@ -17,11 +19,15 @@ class MainApp : Application() {
         initKoin()
     }
 
+
     fun initKoin() {
+        val driverFactory = data.Database.DatabaseDriverFactory(this)
+
         koinApplication = startKoin {
             /// androidContext(this@MainApp) // to pass context
 
             modules(appendWithSharedModule(module {
+                single { AppDatabase(driverFactory.create()) }
 //                factory { AndroidSpecificClass(context: this@KMPApplication) } bind AndroidSpecificClassType::class
             }))
         }
