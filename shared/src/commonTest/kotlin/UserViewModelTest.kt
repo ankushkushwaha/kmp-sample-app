@@ -3,13 +3,10 @@ import data.Model.User
 import data.Network.UserRepository
 import data.Storage
 import data.UserSettingsManager
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import kotlin.test.*
-import com.rickclephas.kmp.observableviewmodel.ViewModel
-import com.rickclephas.kmp.observableviewmodel.ViewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
