@@ -12,7 +12,7 @@ class ContentViewModel : ViewModel() {
     val viewState = _viewState.asStateFlow()
     val viewStateValue: ViewState get() = viewState.value
 
-    fun selectOption(option: ContentOptions) {
+    fun selectOption(option: ContentOptions? = null) {
         _viewState.value = _viewState.value.copy(selectedOption = option)
     }
 

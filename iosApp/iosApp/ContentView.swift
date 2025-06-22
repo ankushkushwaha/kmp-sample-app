@@ -13,7 +13,6 @@ import KMPObservableViewModelCore
 
 struct ContentView: View {
     @StateViewModel var viewModel = CommonKoinHelper().contentViewModel
-    @State private var selectedOption: ContentViewModel.ContentOptions? = nil
     @State private var pushToScreen = false
 
     var body: some View {
@@ -29,8 +28,18 @@ struct ContentView: View {
         .pushView(destination: destinationView(), isPresented: $pushToScreen)
         .navigationTitle("Main Screen")
         .onChange(of: state.selectedOption) { option in
-            pushToScreen = true
+            if option == nil {
+                pushToScreen = false
+            } else {
+                pushToScreen = true
+            }
         }
+        .onChange(of: pushToScreen) { pushToScreen in
+            if pushToScreen == false {
+                viewModel.selectOption(option: nil)
+            }
+        }
+
     }
 
     var state: ContentViewModel.ViewState {
