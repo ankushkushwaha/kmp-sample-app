@@ -61,25 +61,10 @@ kotlin {
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
         }
 
-//        androidUnitTest.dependencies {
-//            implementation(libs.kotlin.test)
-//            implementation("junit:junit:4.13.2")
-//            implementation("io.mockk:mockk:1.11.0")
-//            implementation("io.ktor:ktor-client-mock:2.3.8")
-//            implementation("net.bytebuddy:byte-buddy:1.10.21")
-//            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
-//            implementation("app.cash.turbine:turbine:1.1.0")
-//        }
-
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
             implementation(libs.sqldelight.native)
         }
-
-//        iosTest.dependencies {
-//            implementation(libs.kotlin.test)
-//            implementation("io.ktor:ktor-client-mock:2.3.8") // Add this
-//        }
     }
 }
 
