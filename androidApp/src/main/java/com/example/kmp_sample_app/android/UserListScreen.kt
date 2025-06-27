@@ -10,8 +10,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -27,9 +25,10 @@ fun UserListScreen(viewModel: UserViewModel) {
             TopAppBar(title = { Text("User List") })
         }
     ) { padding ->
-        Box(modifier = Modifier
-            .padding(padding)
-            .fillMaxSize()
+        Box(
+            modifier = Modifier
+                .padding(padding)
+                .fillMaxSize()
         ) {
             when {
                 state.isLoading -> {
@@ -47,9 +46,36 @@ fun UserListScreen(viewModel: UserViewModel) {
                 }
 
                 else -> {
-                    LazyColumn {
-                        items(state.users) { user ->
-                            UserItem(user)
+                    Column(modifier = Modifier.fillMaxSize()) {
+
+                        // Search bar
+                        OutlinedTextField(
+                            value = state.searchQuery,
+                            onValueChange = { viewModel.onSearchQueryChanged(it) },
+                            placeholder = { Text("Search by name or email") },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                            singleLine = true
+                        )
+
+                        // User list
+                        if (state.filteredUsers.isEmpty()) {
+                            Text(
+                                text = "No users found",
+                                modifier = Modifier
+                                    .align(Alignment.CenterHorizontally)
+                                    .padding(top = 32.dp),
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        } else {
+                            LazyColumn(
+                                modifier = Modifier.fillMaxSize()
+                            ) {
+                                items(state.filteredUsers) { user ->
+                                    UserItem(user)
+                                }
+                            }
                         }
                     }
                 }

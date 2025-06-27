@@ -25,13 +25,16 @@ struct ContentView: View {
             } else if let error = state.errorMessage {
                 Text("Error: \(error)")
             } else {
-                List(filteredUsers, id: \.id) { user in
+                List(state.filteredUsers, id: \.id) { user in
                     VStack(alignment: .leading) {
                         Text(user.name).font(.headline)
                         Text(user.email).font(.subheadline).foregroundColor(.gray)
                     }
                 }
             }
+        }
+        .onChange(of: searchText) { searchText in
+            viewModel.onSearchQueryChanged(query: searchText)
         }
         .onAppear {
             viewModel.fetchUsers()
@@ -40,17 +43,6 @@ struct ContentView: View {
     
     var state: UserViewModel.ViewState {
         viewModel.viewStateValue
-    }
-    
-    var filteredUsers: [User] {
-        if searchText.isEmpty {
-            return state.users
-        } else {
-            return state.users.filter {
-                $0.name.lowercased().contains(searchText.lowercased()) ||
-                $0.email.lowercased().contains(searchText.lowercased())
-            }
-        }
     }
 }
 
