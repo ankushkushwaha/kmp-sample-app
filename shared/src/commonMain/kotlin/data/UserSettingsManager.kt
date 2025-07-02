@@ -1,4 +1,4 @@
-
+package data
 class UserSettingsManager(
     private val storage: Storage = getPlatformSystemPreferences()
 ) {

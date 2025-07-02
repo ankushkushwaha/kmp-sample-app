@@ -1,12 +1,14 @@
 package di
 
-import UserViewModel
+import Presentation.ContentViewModel
+import Presentation.UserViewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
 
 private val viewModelModules = module {
     factory { UserViewModel() }
+    factory { ContentViewModel() }
 }
 
 private val repositoryModules = module {

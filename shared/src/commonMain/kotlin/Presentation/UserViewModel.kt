@@ -1,5 +1,8 @@
-import Model.User
-import Network.UserRepository
+package Presentation
+
+import data.UserSettingsManager
+import data.Model.User
+import data.Network.UserRepository
 import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
 import com.rickclephas.kmp.observableviewmodel.ViewModel
 import com.rickclephas.kmp.observableviewmodel.launch
