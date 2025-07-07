@@ -26,13 +26,6 @@ class TodosActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        // ✅ Initialize the database and repository
-//        val driver = DatabaseDriverFactory(this).create()
-//        val database = AppDatabase(driver)
-//        val repository = TodoRepository(database)
-//        val viewModel = TodoViewModel(repository)
-
-        // ✅ Set the Compose content
         setContent {
             MaterialTheme {
                 Surface {
