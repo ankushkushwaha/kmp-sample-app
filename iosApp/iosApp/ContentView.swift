@@ -21,7 +21,7 @@ struct ContentView: View {
             Button(action: {
                 viewModel.selectOption(option: option)
             }) {
-                Text(option.name)
+                Text(option.displayName)
                     .foregroundColor(.primary)
             }
         }
