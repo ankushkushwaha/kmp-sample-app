@@ -18,19 +18,17 @@ class ContentViewModel : ViewModel() {
 
     data class ViewState(
         val options: List<ContentOptions> = ContentOptions.entries,
-        val selectedOption: ContentOptions = ContentOptions.NONE
+        val selectedOption: ContentOptions? = null
     )
 
     enum class ContentOptions {
         USER_LIST,
-        TODOS,
-        NONE;
+        TODOS;
 
         val displayName: String
             get() = when (this) {
                 USER_LIST -> "User List - API call - SystemPreferences (Userdefaults)"
                 TODOS -> "Todos - SQLDeLight Database"
-                NONE -> "None"
             }
     }
 }

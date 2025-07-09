@@ -22,7 +22,7 @@ struct ContentView: View {
                 viewModel.selectOption(option: option)
             }) {
                 Text(option.displayName)
-                    .foregroundColor(.primary)
+                    .foregroundColor(state.selectedOption == option ? .green : .black)
             }
         }
         .listStyle(.plain)
