@@ -8,6 +8,12 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import kotlin.test.*
+import com.rickclephas.kmp.observableviewmodel.ViewModel
+import com.rickclephas.kmp.observableviewmodel.ViewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.setMain
 
 class UserViewModelTest {
 
@@ -28,21 +34,34 @@ class UserViewModelTest {
 
     class TestUserSettingsManager(storage: Storage) : UserSettingsManager(storage)
 
+    // testDispatcher to test code which is based on Flows
+    // Scheduling coroutines on a fake “main thread” of testDispatcher
+    private val testDispatcher = StandardTestDispatcher()
+    @BeforeTest
+    fun setup() {
+        Dispatchers.setMain(testDispatcher)
+    }
+
+    @AfterTest
+    fun tearDown() {
+        Dispatchers.resetMain()
+    }
+
     @Test
     fun `fetchUsers updates state on success`() = runTest {
         val storage = FakeStorage()
-        val repo = FakeUserRepository(usersToReturn = testUsers)
         val manager = TestUserSettingsManager(storage)
+        val repo = FakeUserRepository(usersToReturn = testUsers)
         val viewModel = UserViewModel(repo, manager)
 
         viewModel.fetchUsers()
-        delay(100)
+        advanceUntilIdle()
 
         val state = viewModel.viewStateValue
         assertFalse(state.isLoading)
         assertNull(state.errorMessage)
         assertEquals(testUsers, state.users)
-        assertEquals(emptyList(), state.filteredUsers)
+        assertEquals(testUsers, state.filteredUsers)
         assertEquals(1, manager.getCount())
     }
 
@@ -63,19 +82,19 @@ class UserViewModelTest {
         assertEquals(1, manager.getCount())
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
+
     @Test
     fun `onSearchQueryChanged filters correctly`() = runTest {
         val storage = FakeStorage()
-        val repo = FakeUserRepository(usersToReturn = testUsers)
         val manager = TestUserSettingsManager(storage)
+        val repo = FakeUserRepository(usersToReturn = testUsers)
         val viewModel = UserViewModel(repo, manager)
 
         viewModel.fetchUsers()
-        advanceUntilIdle() // replaces delay(100)
+        advanceUntilIdle()
 
         viewModel.onSearchQueryChanged("bob")
-        advanceUntilIdle() // replaces delay(1000)
+        advanceUntilIdle()
 
         val filtered = viewModel.viewStateValue.filteredUsers
         assertEquals(1, filtered.size)
