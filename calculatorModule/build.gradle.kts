@@ -26,7 +26,7 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "CalculatorModule"
-            isStatic = true
+            isStatic = false
         }
     }
 
@@ -46,7 +46,7 @@ kotlin {
 //    }
 //}
 android {
-    namespace = "com.example.caclulator_module"
+    namespace = "com.example.calculator_module"
     compileSdk = 34
     defaultConfig {
         minSdk = 24

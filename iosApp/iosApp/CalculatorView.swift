@@ -13,7 +13,7 @@ import CalculatorModule
 struct CalculatorView: View {
     var body: some View {
         
-        Text(Greeting().greet())
+        Text(Greeting2().greet())
     }
 }
 

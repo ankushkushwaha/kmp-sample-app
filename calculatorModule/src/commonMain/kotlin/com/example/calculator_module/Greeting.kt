@@ -4,6 +4,6 @@ class Greeting2 {
     private val platform: Platform = getPlatform()
 
     fun greet(): String {
-        return "Hello, ${platform.name}!"
+        return "Hello CalculatorModule, ${platform.name}!"
     }
 }
