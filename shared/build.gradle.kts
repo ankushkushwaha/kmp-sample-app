@@ -37,8 +37,6 @@ kotlin {
         }
         commonMain.dependencies {
 
-            implementation(projects.calculatorModule)
-
             api(libs.kmp.observableviewmodel.core)
 
             implementation(libs.koin.core)
