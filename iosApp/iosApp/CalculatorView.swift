@@ -14,6 +14,7 @@ struct CalculatorView: View {
     var body: some View {
         
         Text(Greeting2().greet())
+            .padding()
     }
 }
 
