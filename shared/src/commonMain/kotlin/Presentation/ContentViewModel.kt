@@ -23,12 +23,14 @@ class ContentViewModel : ViewModel() {
 
     enum class ContentOptions {
         USER_LIST,
-        TODOS;
+        TODOS,
+        CALCULATOR_INDEPENDENT_MODULE;
 
         val displayName: String
             get() = when (this) {
                 USER_LIST -> "User List - API call - SystemPreferences (Userdefaults)"
                 TODOS -> "Todos - SQLDeLight Database"
+                CALCULATOR_INDEPENDENT_MODULE -> "CALCULATOR_INDEPENDENT_MODULE"
             }
     }
 }
