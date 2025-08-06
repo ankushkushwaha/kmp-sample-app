@@ -48,6 +48,7 @@ dependencies {
     implementation(libs.koin.android.compat)
     implementation(libs.koin.androidx.compose)
     implementation(project(":calculatorModule"))
+    testImplementation(kotlin("test"))
 
     debugImplementation(libs.compose.ui.tooling)
 }
