@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.sqlDelight)
-
+    id("jacoco")
 }
 
 kotlin {
@@ -91,3 +91,21 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.android)
 }
 
+
+tasks.register<JacocoReport>("jacocoSharedTestReport") {
+    dependsOn("testDebugUnitTest")
+
+    reports {
+        xml.required.set(true)
+        // ✅ Custom name for JaCoCo XML
+        xml.outputLocation.set(layout.buildDirectory.file("reports/jacoco/report.xml"))
+        html.required.set(true)
+    }
+
+    val debugTree = fileTree("${layout.buildDirectory.get()}/tmp/kotlin-classes/debug")
+    val mainSrc = "${project.projectDir}/src/commonMain/kotlin"
+
+    sourceDirectories.setFrom(files(mainSrc))
+    classDirectories.setFrom(files(debugTree))
+    executionData.setFrom(file("${layout.buildDirectory.get()}/jacoco/testDebugUnitTest.exec"))
+}
