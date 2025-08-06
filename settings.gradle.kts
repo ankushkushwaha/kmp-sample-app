@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 rootProject.name = "kmp-sample-app"
 include(":androidApp")
 include(":shared")
+include(":calculatorModule")

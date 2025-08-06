@@ -36,6 +36,7 @@ kotlin {
             languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
         }
         commonMain.dependencies {
+
             api(libs.kmp.observableviewmodel.core)
 
             implementation(libs.koin.core)

@@ -23,6 +23,7 @@
         <!-- Other Activities (must be outside MainActivity block) -->
         <activity android:name=".UserListActivity" />
         <activity android:name=".TodosActivity" />
+        <activity android:name=".CalculatorActivity" />
 
     </application>
 </manifest>

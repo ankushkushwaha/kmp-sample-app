@@ -47,7 +47,7 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.android.compat)
     implementation(libs.koin.androidx.compose)
-
+    implementation(project(":calculatorModule"))
 
     debugImplementation(libs.compose.ui.tooling)
 }

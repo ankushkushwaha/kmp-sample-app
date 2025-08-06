@@ -53,8 +53,8 @@ struct ContentView: View {
             UserListView()
         case .todos:
             TodoListView()
-        case .none:
-            EmptyView()
+        case .calculatorIndependentModule:
+            CalculatorView()
         default:
             EmptyView()
         }
