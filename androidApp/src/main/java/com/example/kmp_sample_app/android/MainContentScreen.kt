@@ -11,7 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.calculator_module.Greeting2
+import com.example.kmp_sample_app.android.CalculatorActivity
 import com.example.kmp_sample_app.android.TodosActivity
 import com.example.kmp_sample_app.android.UserListActivity
 
@@ -38,6 +39,12 @@ fun MainContentScreen(
                             Intent(context, TodosActivity::class.java)
                         )
                     }
+
+                    ContentViewModel.ContentOptions.CALCULATOR_INDEPENDENT_MODULE -> {
+                        context.startActivity(
+                            Intent(context, CalculatorActivity::class.java)
+                        )
+                    }
                 }
             }
         )
@@ -53,36 +60,39 @@ fun ContentOptionListScreen(
 ) {
     val state by contentViewModel.viewState.collectAsState()
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-    ) {
-        items(state.options) { option ->
-            val isSelected = option == state.selectedOption
+    Column {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        ) {
+            items(state.options) { option ->
+                val isSelected = option == state.selectedOption
 
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 4.dp)
-                    .background(
-                        if (isSelected) MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
-                        else Color.Transparent
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp)
+                        .background(
+                            if (isSelected) MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
+                            else Color.Transparent
+                        )
+                        .clickable {
+                            contentViewModel.selectOption(option)
+                            onOptionSelected(option)
+                        }
+                        .padding(12.dp)
+                ) {
+                    Text(
+                        text = option.displayName.replace("_", " "),
+                        style = if (isSelected)
+                            MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.primary)
+                        else
+                            MaterialTheme.typography.bodyMedium
                     )
-                    .clickable {
-                        contentViewModel.selectOption(option)
-                        onOptionSelected(option)
-                    }
-                    .padding(12.dp)
-            ) {
-                Text(
-                    text = option.displayName.replace("_", " "),
-                    style = if (isSelected)
-                        MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.primary)
-                    else
-                        MaterialTheme.typography.bodyMedium
-                )
+                }
             }
         }
+
     }
 }
