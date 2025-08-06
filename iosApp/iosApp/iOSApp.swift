@@ -1,15 +1,18 @@
 import SwiftUI
-import shared
+import Shared
 import KMPObservableViewModelCore
 
 @main
 struct iOSApp: App {
     init() {
-        KoinHelperKt.doInitWithSharedModules(iOSModule: "iOSModule")
+        
+        KoinHelperKt.doInitWithSharedModules(iOSModule: "iOSModuleTestString")
     }
 	var body: some Scene {
 		WindowGroup {
-			ContentView()
+            NavigationStack {
+                ContentView()
+            }
 		}
 	}
 }

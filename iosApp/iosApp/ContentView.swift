@@ -1,61 +1,63 @@
+//
+//  UserListView.swift
+//  iosApp
+//
+//  Created by Ankush Kushwaha on 21/06/25.
+//  Copyright © 2025 orgName. All rights reserved.
+//
+
 import SwiftUI
-import shared
+import Shared
 import KMPObservableViewModelSwiftUI
 import KMPObservableViewModelCore
 
 struct ContentView: View {
-    
-    @StateViewModel var viewModel = CommonKoinHelper().userViewModel
-    @StateObject var searchViewModel = SearchViewModel()
-    @State private var searchText: String = ""
-    
+    @StateViewModel var viewModel = CommonKoinHelper().contentViewModel
+    @State private var pushToScreen = false
+
     var body: some View {
-        VStack {
-            
-            TextField("Search users...", text: $searchText)
-                .padding(8)
-                .background(Color(.systemGray6))
-                .cornerRadius(10)
-                .padding(.horizontal)
-            
-            Spacer()
-            
-            if state.isLoading {
-                ProgressView("Loading...")
-            } else if let error = state.errorMessage {
-                Text("Error: \(error)")
-            } else {
-                List(filteredUsers, id: \.id) { user in
-                    VStack(alignment: .leading) {
-                        Text(user.name).font(.headline)
-                        Text(user.email).font(.subheadline).foregroundColor(.gray)
-                    }
-                }
+        List(state.options, id: \.self) { option in
+            Button(action: {
+                viewModel.selectOption(option: option)
+            }) {
+                Text(option.displayName)
+                    .foregroundColor(state.selectedOption == option ? .green : .black)
             }
         }
-        .onAppear {
-            viewModel.fetchUsers()
+        .listStyle(.plain)
+        .pushView(destination: destinationView(), isPresented: $pushToScreen)
+        .navigationTitle("Main Screen")
+        .onChange(of: state.selectedOption) { option in
+            if option == nil {
+                pushToScreen = false
+            } else {
+                pushToScreen = true
+            }
         }
+        .onChange(of: pushToScreen) { pushToScreen in
+            if pushToScreen == false {
+                viewModel.selectOption(option: nil)
+            }
+        }
+
     }
-    
-    var state: UserViewModel.ViewState {
+
+    var state: ContentViewModel.ViewState {
         viewModel.viewStateValue
     }
-    
-    var filteredUsers: [User] {
-        if searchText.isEmpty {
-            return state.users
-        } else {
-            return state.users.filter {
-                $0.name.lowercased().contains(searchText.lowercased()) ||
-                $0.email.lowercased().contains(searchText.lowercased())
-            }
+
+    @ViewBuilder
+    private func destinationView() -> some View {
+        switch state.selectedOption {
+        case .userList:
+            UserListView()
+        case .todos:
+            TodoListView()
+        case .none:
+            EmptyView()
+        default:
+            EmptyView()
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}

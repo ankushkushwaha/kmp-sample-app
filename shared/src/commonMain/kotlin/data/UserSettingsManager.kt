@@ -1,14 +1,14 @@
-
-class UserSettingsManager(
+package data
+open class UserSettingsManager(
     private val storage: Storage = getPlatformSystemPreferences()
 ) {
     private val countKey = "count"
 
-    fun saveCount(count: Int) {
+    open fun saveCount(count: Int) {
         storage.save(countKey, count)
     }
 
-    fun getCount(): Int {
+    open fun getCount(): Int {
         return storage.getInt(countKey)
     }
 

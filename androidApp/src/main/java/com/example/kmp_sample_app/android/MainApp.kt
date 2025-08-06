@@ -1,13 +1,12 @@
 package com.example.kmp_sample_app.android
 
-import UserSettingsManager
 import android.app.Application
+import com.example.kmp_sample_app.database.AppDatabase
+import data.Database.CommonKmpHelper
 import di.appendWithSharedModule
-import initKmpStorage
-import org.koin.android.ext.koin.androidContext
+import data.initKmpStorage
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
-import org.koin.dsl.bind
 import org.koin.dsl.module
 
 class MainApp : Application() {
@@ -20,11 +19,15 @@ class MainApp : Application() {
         initKoin()
     }
 
+
     fun initKoin() {
+        val driverFactory = data.Database.DatabaseDriverFactory(this)
+
         koinApplication = startKoin {
             /// androidContext(this@MainApp) // to pass context
 
             modules(appendWithSharedModule(module {
+                single { AppDatabase(driverFactory.create()) }
 //                factory { AndroidSpecificClass(context: this@KMPApplication) } bind AndroidSpecificClassType::class
             }))
         }

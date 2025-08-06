@@ -1,15 +1,11 @@
-package Network
+package data.Network
 
 import io.ktor.client.HttpClient
-import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 
-import io.ktor.client.*
 import io.ktor.client.plugins.HttpTimeout
-import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
-import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
 fun createHttpClient(): HttpClient {

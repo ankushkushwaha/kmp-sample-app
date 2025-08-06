@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.sqlDelight)
 
 }
 
@@ -24,7 +25,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "shared"
+            baseName = "Shared"
             isStatic = true
         }
     }
@@ -46,22 +47,34 @@ kotlin {
             implementation(libs.multiplatform.settings)
             implementation("com.russhwolf:multiplatform-settings-no-arg:1.3.0")
 
-        }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
+            implementation(libs.sqldelight.coroutines)
         }
 
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
             implementation(libs.koin.android)
+            implementation(libs.sqldelight.android)
+        }
+
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
         }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation(libs.sqldelight.native)
         }
     }
 }
 
+sqldelight {
+    databases {
+        create("AppDatabase") {
+            packageName = "com.example.kmp_sample_app.database"
+        }
+    }
+}
 android {
     namespace = "com.example.kmp_sample_app"
     compileSdk = 34
