@@ -20,6 +20,8 @@ tasks.register<Exec>("androidCoverage") {
         "-Dsonar.sources=androidApp/src/main,shared/src/commonMain",
         "-Dsonar.tests=androidApp/src/test,shared/src/commonTest",
         "-Dsonar.coverage.jacoco.xmlReportPaths=${sharedReport.absolutePath},${androidReport.absolutePath}",
-        "-Dsonar.exclusions=**/iosApp/**,**/Pods/**,**/*.xml"
+        "-Dsonar.exclusions=**/iosApp/**,**/Pods/**,**/*.xml",
+//        "-Dsonar.branch.name=$branchName"
+
     )
 }
