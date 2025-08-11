@@ -1,7 +1,19 @@
 import org.gradle.api.tasks.Exec
 
+val sharedReportDir = layout.projectDirectory.dir("shared/build/reports/jacoco").asFile
+val androidReportDir = layout.projectDirectory.dir("androidApp/build/reports/jacoco").asFile
+
 val sharedReport = layout.projectDirectory.file("shared/build/reports/jacoco/report.xml").asFile
 val androidReport = layout.projectDirectory.file("androidApp/build/reports/jacoco/androidApp-report.xml").asFile
+
+// 1. Clean old android report files
+tasks.register("cleanAndroidCoverageReports") {
+    doLast {
+        println("🧹 Deleting old Jacoco reports...")
+        delete(sharedReportDir)
+        delete(androidReportDir)
+    }
+}
 
 tasks.register<Exec>("androidCoverage") {
     group = "verification"
@@ -23,7 +35,6 @@ tasks.register<Exec>("androidCoverage") {
         "-Dsonar.coverage.jacoco.xmlReportPaths=${sharedReport.absolutePath},${androidReport.absolutePath}",
         "-Dsonar.exclusions=**/iosApp/**,**/Pods/**,**/*.xml",
 //        "-Dsonar.branch.name=$branchName"
-
     )
 }
 
